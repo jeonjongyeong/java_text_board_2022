@@ -40,7 +40,6 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     int articleLastId = 0;
-    Article lastArticle = null;
     ArrayList<Article> articles = new ArrayList<Article>();
 
     // 테스트 데이터 3개 등록, 시작
@@ -66,7 +65,6 @@ public class Main {
         articleLastId = id;
 
         Article article = new Article(id, title, body);
-        lastArticle = article;
         articles.add(article);
         article.id = id;
         article.title = title;
@@ -90,12 +88,12 @@ public class Main {
 
       }  else if (cmd.equals("/usr/article/detail")) {
 
-          if (lastArticle == null) {
+          if (articles.isEmpty()) {
             System.out.println("게시물이 존재하지 않습니다.");
             continue;
           }
 
-          Article article = lastArticle;
+          Article article = articles.get(articles.size() -1);
 
           System.out.println("- 게시물 상세내용 -");
           System.out.printf("번호 : %s\n", article.id);
