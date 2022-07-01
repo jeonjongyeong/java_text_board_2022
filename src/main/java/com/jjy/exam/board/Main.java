@@ -46,6 +46,10 @@ public class Main {
     // 테스트 데이터 3개 등록, 시작
     makeTestDate(articles);
 
+    if (articles.size() > 0) {
+      articleLastId = articles.get(articles.size() -1).id;
+    }
+
     while (true) {
       System.out.printf("명령 : ");
       String cmd = sc.nextLine();
