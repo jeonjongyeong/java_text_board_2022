@@ -1,5 +1,6 @@
 package com.jjy.exam.board;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -33,6 +34,12 @@ public class Main {
 
     int articleLastId = 0;
     Article lastArticle = null;
+    ArrayList<Article> articles = new ArrayList<Article>();
+
+    // 테스트 데이터 3개 등록, 시작
+    articles.add(new Article(1, "제목1", "내용1"));
+    articles.add(new Article(2, "제목2", "내용2"));
+    articles.add(new Article(3, "제목3", "내용3"));
 
     while (true) {
       System.out.printf("명령 : ");
@@ -58,50 +65,60 @@ public class Main {
         System.out.println(article);
 
 
-
         System.out.printf("%d번 게시물이 입력되었습니다. \n", id);
-      } else if(cmd.equals("/usr/article/detail")) {
+      } else if (cmd.equals("/usr/article/list")) {
+        System.out.println("- 게시물 리스트 -");
+        System.out.println("-----------------------");
+        System.out.println("번호  /  제목");
 
-        if (lastArticle == null) {
-          System.out.println("게시물이 존재하지 않습니다.");
-          continue;
+        for ( Article article : articles) {
+          System.out.printf("%d / %s\n", article.id, article.title);
         }
 
-        Article article = lastArticle;
-
-        System.out.println("- 게시물 상세내용 -");
-        System.out.printf("번호 : %s\n", article.id);
-        System.out.printf("제목 : %s\n", article.title);
-        System.out.printf("내용 : %s\n", article.body);
 
 
-      } else {
-        System.out.printf("입력받은 명령어 : %s\n", cmd);
+      }  else if (cmd.equals("/usr/article/detail")) {
+
+          if (lastArticle == null) {
+            System.out.println("게시물이 존재하지 않습니다.");
+            continue;
+          }
+
+          Article article = lastArticle;
+
+          System.out.println("- 게시물 상세내용 -");
+          System.out.printf("번호 : %s\n", article.id);
+          System.out.printf("제목 : %s\n", article.title);
+          System.out.printf("내용 : %s\n", article.body);
+
+
+        } else {
+          System.out.printf("입력받은 명령어 : %s\n", cmd);
+        }
+
       }
 
+      sc.close();
+
+      System.out.println("== 프로그램 종료 ==");
+    }
+  }
+
+  class Article {
+    int id;
+    String title;
+    String body;
+
+    public Article(int id, String title, String body) {
+      this.id = id;
+      this.title = title;
+      this.body = body;
     }
 
-    sc.close();
-
-    System.out.println("== 프로그램 종료 ==");
+    @Override
+    public String toString() {
+      String title = this.title != null ? "\"" + this.title + "\"" : null;
+      String body = this.body != null ? "\"" + this.body + "\"" : null;
+      return String.format("{id: %d, title: %s, body: %s}", id, title, body);
+    }
   }
-}
-
-class Article {
-  int id;
-  String title;
-  String body;
-
-  public Article(int id, String title, String body) {
-    this.id = id;
-    this.title = title;
-    this.body = body;
-  }
-
-  @Override
-  public String toString() {
-    String title = this.title != null ? "\"" + this.title + "\"" : null;
-    String body = this.body != null ? "\"" + this.body + "\"" : null;
-    return String.format("{id: %d, title: %s, body: %s}", id, title, body);
-  }
-}
