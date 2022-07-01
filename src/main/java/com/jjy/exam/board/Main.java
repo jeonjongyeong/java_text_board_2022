@@ -67,6 +67,7 @@ public class Main {
 
         Article article = new Article(id, title, body);
         lastArticle = article;
+        articles.add(article);
         article.id = id;
         article.title = title;
         article.body = body;
