@@ -1,6 +1,7 @@
 package com.jjy.exam.board;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -26,7 +27,7 @@ TODO
 - [x] 생성자 도입
 */
 public class Main {
-  static void makeTestDate(ArrayList<Article> articles) {
+  static void makeTestDate(List<Article> articles) {
 
     articles.add(new Article(1, "제목1", "내용1"));
     articles.add(new Article(2, "제목2", "내용2"));
@@ -40,7 +41,7 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     int articleLastId = 0;
-    ArrayList<Article> articles = new ArrayList<Article>();
+    List<Article> articles = new ArrayList<>();
 
     // 테스트 데이터 3개 등록, 시작
     makeTestDate(articles);
