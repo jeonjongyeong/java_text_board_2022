@@ -63,6 +63,7 @@ public class Main {
         String title = sc.nextLine();
         System.out.printf("내용 : ");
         String body = sc.nextLine();
+
         int id = articleLastId + 1;
         articleLastId = id;
 
@@ -81,10 +82,24 @@ public class Main {
         System.out.println("-----------------------");
         System.out.println("번호  /  제목");
 
-        for ( int i = articles.size() -1; i >= 0; i--) {
-          Article article = articles.get(i);
-          System.out.printf("%d / %s\n", article.id, article.title);
+        boolean orderByIdDesc = true;
+
+        if (params.containsKey("orderBy") && params.get("orderBy").equals("idAsc")) {
+          orderByIdDesc = false;
+
         }
+
+        if (orderByIdDesc) {
+          for ( int i = articles.size() -1; i >= 0; i--) {
+            Article article = articles.get(i);
+            System.out.printf("%d / %s\n", article.id, article.title);
+          }
+        } else {
+          for ( Article article : articles) {
+            System.out.printf("%d / %s\n", article.id, article.title);
+          }
+        }
+
 
 
 
