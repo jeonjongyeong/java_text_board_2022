@@ -25,8 +25,13 @@ TODO
 - [x] 생성자 도입
 */
 public class Main {
-    static int articlesLastId = 0;
-    static List<Article> articles = new ArrayList<>();
+    static int articlesLastId;
+    static List<Article> articles;
+
+    static {
+        articlesLastId = 0;
+        articles = new ArrayList<>();
+    }
 
     public static void main(String[] args) {
         Scanner sc = Container.sc;
