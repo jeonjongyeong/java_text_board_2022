@@ -29,7 +29,8 @@ public class Main {
     static List<Article> articles = new ArrayList<>();
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = Container.sc;
+
         System.out.println("== 게시판 v 0.1 ==");
         System.out.println("== 프로그램 시작 ==");
 
@@ -50,7 +51,7 @@ public class Main {
             } else if (rq.getUrlPath().equals("/usr/article/detail")) {
                 actionUsrArticleDetail(rq);
             } else if (rq.getUrlPath().equals("/usr/article/write")) {
-                actionUsrArticleWrite(rq, sc);
+                actionUsrArticleWrite(rq);
             } else {
                 System.out.printf("입력된 명령어 : %s\n", cmd);
             }
@@ -66,12 +67,12 @@ public class Main {
         }
     }
 
-    private static void actionUsrArticleWrite(Rq rq, Scanner sc) {
+    private static void actionUsrArticleWrite(Rq rq) {
         System.out.println("- 게시물 등록 -");
         System.out.printf("제목 : ");
-        String title = sc.nextLine();
+        String title = Container.sc.nextLine();
         System.out.printf("내용 : ");
-        String body = sc.nextLine();
+        String body = Container.sc.nextLine();
         int id = articlesLastId + 1;
         articlesLastId = id;
         Article article = new Article(id, title, body);
