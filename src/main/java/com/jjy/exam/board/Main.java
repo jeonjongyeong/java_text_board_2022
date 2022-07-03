@@ -27,10 +27,10 @@ TODO
 public class Main {
     static void makeTestDate(List<Article> articles) {
 
-        articles.add(new Article(1, "제목1", "내용1"));
-        articles.add(new Article(2, "제목2", "내용2"));
-        articles.add(new Article(3, "제목3", "내용3"));
-
+      for ( int i = 0; i < 100; i++) {
+          int id = i + 1;
+          articles.add(new Article(id, "제목" + id, "내용" + id));
+      }
     }
 
     public static void main(String[] args) {
